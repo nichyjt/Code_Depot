@@ -10,15 +10,15 @@ JOKE_CAT_PUN = 'Pun'
 JOKE_CAT_SPOOKY = 'Spooky'
 JOKE_CAT_CHRISTMAS = 'Christmas'
 nsfw = False
-religious=False
-political=False
-racist=False
-sexist=False
+religious = False
+political = False
+racist = False
+sexist = False
 
 # jokeapi endpoint https://sv443.net/jokeapi/v2/joke/[Category/-ies]
 def quickJoke():
     url = "https://sv443.net/jokeapi/v2/joke/any"
-    jokeJson = req.get(url+"/any")
+    jokeJson = req.get(url)
     if jokeJson.status_code!=200:
         print('ERROR'+str(jokeJson.status_code))
         return
@@ -32,7 +32,7 @@ def quickJoke():
 
 def getJokeSpecific(id=0):
     url = "https://sv443.net/jokeapi/v2/joke/any"
-    url+='?idRange%s-%s' %(str(id),str(id))
+    url+='?idRange=%s-%s' %(str(id),str(id))
     jokeJson = req.get(url)
     joke = jokeJson.json()
     if joke['error']:
