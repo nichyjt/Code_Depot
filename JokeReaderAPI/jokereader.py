@@ -17,6 +17,7 @@ sexist=False
 
 # jokeapi endpoint https://sv443.net/jokeapi/v2/joke/[Category/-ies]
 def quickJoke():
+    url = "https://sv443.net/jokeapi/v2/joke/any"
     jokeJson = req.get(url+"/any")
     if jokeJson.status_code!=200:
         print('ERROR'+str(jokeJson.status_code))
@@ -28,11 +29,21 @@ def quickJoke():
         print(joke['setup'])
         print(joke['delivery'])
     print("Joke number: "+str(joke['id']))
-    return
 
 def getJokeSpecific(id=0):
     url = "https://sv443.net/jokeapi/v2/joke/any"
     url+='?idRange%s-%s' %(str(id),str(id))
+    jokeJson = req.get(url)
+    joke = jokeJson.json()
+    if joke['error']:
+        print("HTTP ERROR "+str(joke['code']))
+        return
+    if joke['type']=='single':
+        print(joke["joke"])
+    else:
+        print(joke['setup'])
+        print(joke['delivery'])
+    print("This is joke number: "+str(joke['id']))
 
 def setJokeFilters(no_nsfw=nsfw, no_religious=religious, no_political=political, no_racist=racist, no_sexist=sexist):
     nsfw = no_nsfw
@@ -42,7 +53,7 @@ def setJokeFilters(no_nsfw=nsfw, no_religious=religious, no_political=political,
     sexist = no_sexist
 
 def getJoke(category='any'):
-    url = "https://sv443.net/jokeapi/v2/joke/any"
+    url = "https://sv443.net/jokeapi/v2/joke"
     url += "/"+category
     numFlags = 0
     blacklist = "?blacklistflags="
