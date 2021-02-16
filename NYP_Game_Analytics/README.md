@@ -1,9 +1,9 @@
 # Game Analytics
 
 ## Synopsis
-This project was done back in 2015 in the NYP-NCHS Science and Technology Research Programme.  
+This project was done back in 2015-2016 in the NYP-NCHS Science and Technology Research Programme.  
 Essentially, we got various data parameters off of Osu!'s player profile pages, analysed the data to get some findings, and gave recommendations based on the findings.
-Python & Jupyter Notebook IDE was used for this project.
+Python, Jupyter Notebook and Pandas were used for this project.
 
 ## Area for Improvement
 Reviewing the research process 5 years after the project ended, there are a few things I would have done to improve this project.
